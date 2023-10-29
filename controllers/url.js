@@ -1,9 +1,8 @@
 const shortid = require("shortid");
-const { connectToMongoDB, disconnectFromMongoDB } = require('../connect'); // Adjust the path to your MongoDB setup
+const { connectToMongoDB, disconnectFromMongoDB, findRedirectURLByShortId } = require('../connect');
 
 async function generateNewShortURL(req, res) {
     const body = req.body;
-    console.log("enteres")
     if (!body || !body.url) {
         return res.status(400).json({ error: 'url is required' });
     }
@@ -33,6 +32,11 @@ async function generateNewShortURL(req, res) {
     }
 }
 
+async function findRedirectURL(shortID) {
+    var xd = await findRedirectURLByShortId(shortID);
+    return xd
+}
+
 module.exports = {
-    generateNewShortURL,
+    generateNewShortURL, findRedirectURL
 };

@@ -35,7 +35,28 @@ async function disconnectFromMongoDB() {
     }
 }
 
+async function findRedirectURLByShortId(shortId) {
+    try {
+        const collectionName = "url"
+        const db = client.db(databaseName);
+        const collection = db.collection(collectionName);
+
+        const query = { shortId };
+        const result = await collection.findOne(query);
+        if (result.redirectURL) {
+            return result.redirectURL;
+        } else {
+            console.log(`ShortId ${shortId} not found in the database.`);
+            return null;
+        }
+    } catch (err) {
+        console.error('Error finding redirect URL:', err);
+        return null;
+    }
+}
+
 module.exports = {
     connectToMongoDB,
     disconnectFromMongoDB,
+    findRedirectURLByShortId
 };

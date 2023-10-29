@@ -1,6 +1,4 @@
 const express = require("express");
-const shortid = require("shortid");
-const { connectToMongoDB, disconnectFromMongoDB } = require('./connect');
 const urlController = require('./controllers/url'); 
 
 const app = express();
@@ -11,14 +9,14 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/:shortID', (req, res) => {
-    res.send("prontos")
-})
+app.get('/:shortID', async (req, res) => {
+    const shortID = req.params.shortID;
+    var link = await urlController.findRedirectURL(shortID);
+    res.redirect(link)
+});
+
 app.post('/url', async (req, res) => {
     urlController.generateNewShortURL(req, res);
 });
 
-
-
-//app.use("/url", urlRoute);
 app.listen(8801, () => console.log("started"))
