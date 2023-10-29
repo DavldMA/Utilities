@@ -10,6 +10,7 @@ async function generateNewShortURL(req, res) {
 
     const shortID = shortid();
     const db = await connectToMongoDB();
+    
     try {
         const urlCollection = db.collection('url');
     
