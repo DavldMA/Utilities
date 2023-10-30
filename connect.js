@@ -37,6 +37,7 @@ async function disconnectFromMongoDB() {
 
 async function findRedirectURLByShortId(shortId) {
     try {
+        await connectToMongoDB()
         const collectionName = "url"
         const db = client.db(databaseName);
         const collection = db.collection(collectionName);
@@ -52,6 +53,9 @@ async function findRedirectURLByShortId(shortId) {
     } catch (err) {
         console.error('Error finding redirect URL:', err);
         return null;
+    }
+    finally{
+        await disconnectFromMongoDB();
     }
 }
 
