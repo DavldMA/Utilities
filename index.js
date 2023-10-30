@@ -1,12 +1,17 @@
 const express = require("express");
+const ejs = require('ejs');
+const path = require('path');
+const util = require('util');
 const urlController = require('./controllers/url'); 
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'));
+app.set('view engine', 'ejs');
+
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+    res.render(__dirname + '/views/pages/index');
 });
 
 app.get('/:shortID', async (req, res) => {
