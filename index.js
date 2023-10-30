@@ -2,7 +2,6 @@ const express = require("express");
 const ejs = require('ejs');
 const path = require('path');
 const util = require('util');
-const rateLimit = require('express-rate-limit');
 const urlController = require('./controllers/url'); 
 
 const app = express();
@@ -11,17 +10,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
-const limiter = rateLimit({
-    windowMs: 60 * 1000, // 10 seconds
-    max: 100, // Allow 1 request per 10 seconds per IP
-});
 
 app.get('/', function (req, res) {
     res.render(__dirname + '/views/pages/index.ejs');
 });
 
 
-app.use('/:shortID', limiter);
 app.get('/:shortID', async (req, res) => {
     const shortID = req.params.shortID;
     if (shortID.length < 2) {
