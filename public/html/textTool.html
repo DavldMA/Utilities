@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <title>Utilities</title>
+</head>
+<body>
+    <!-- json, remove other things -->
+    
+    <section>
+        <h2 class='heading'>Text Converter:</h2><br>
+        <forms>
+            <textarea id="input" placeholder="Type something..."></textarea>
+            <div id="checkbox-wrapper">
+                <div>
+                    <label class="container">Remove Numbers</label>
+                    <input id="numberRemover" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">Remove Letters</label>
+                    <input id="letterRemover" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">Remove Spaces</label>
+                    <input id="noSpaces" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">Remove Paragraphs</label>
+                    <input id="noParagraphs" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">Int Converter</label>
+                    <input id="intConverter" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">String Converter</label>
+                    <input id="stringConverter" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">Array Converter</label>
+                    <input id="arrayConverter" type="checkbox">
+                </div>
+                <div>
+                    <label class="container">Remove Specific Character</label>
+                    <input id="charRemover" type="checkbox">
+                    <input id="charRemoverText" style="display: none;" type="text">
+                </div>
+            </div>
+            <input onclick="submitForms()" type="submit">
+        </forms>
+    </section>
+    <section>
+        <h2 class='heading'>Output:</h2><br>
+        <textarea id="output"></textarea>
+        <button id="copyButton">Copy to Clipboard</button>
+    </section>
+    <script src="../js/main.js"></script>
+</body>
+</html>
