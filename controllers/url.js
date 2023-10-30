@@ -28,7 +28,7 @@ async function generateNewShortURL(req, res) {
         console.error('Error creating a new short URL:', error);
         return res.status(500).json({ error: 'Internal server error' });
     } finally {
-        disconnectFromMongoDB();
+        await disconnectFromMongoDB();
     }
 }
 
