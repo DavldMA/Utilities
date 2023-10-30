@@ -11,7 +11,7 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-    res.render(__dirname + '/views/pages/index');
+    res.render(__dirname + '/views/pages/index.ejs');
 });
 
 app.get('/:shortID', async (req, res) => {
