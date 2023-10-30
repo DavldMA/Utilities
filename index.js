@@ -12,8 +12,8 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 
 const limiter = rateLimit({
-    windowMs: 10 * 1000, // 10 seconds
-    max: 1, // Allow 1 request per 10 seconds per IP
+    windowMs: 60 * 1000, // 10 seconds
+    max: 100, // Allow 1 request per 10 seconds per IP
 });
 
 app.get('/', function (req, res) {
