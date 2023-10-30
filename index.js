@@ -35,6 +35,5 @@ async function test(){
     await urlController.deleteAllFromDB();
 }
 
-test()
 
 app.listen(8801, () => console.log("started"))
