@@ -24,8 +24,15 @@ app.get('/:shortID', async (req, res) => {
 });
 
 app.post('/url', async (req, res) => {
-    let linkUrl = urlController.generateNewShortURL(req, res);
-    res.render(__dirname + 'views/pages/url.ejs', { linkURL: linkUrl} );
+    let linkUrl = await urlController.generateNewShortURL(req, res);
+    linkUrl = "https://personalutils.vercel.app/" + linkUrl
+    res.render(__dirname + '/views/pages/url.ejs', { linkURL: linkUrl} );
 });
+
+async function test(){
+    await urlController.deleteAllFromDB();
+}
+
+test()
 
 app.listen(8801, () => console.log("started"))

@@ -55,8 +55,22 @@ async function findRedirectURLByShortId(shortId) {
     }
 }
 
+async function deleteAllDocumentsInUrlCollection() {
+    try {
+        const collectionName = "url";
+        const db = client.db(databaseName);
+        const collection = db.collection(collectionName);
+
+        const deleteResult = await collection.deleteMany({});
+        console.log(`Deleted ${deleteResult.deletedCount} documents in the "${collectionName}" collection.`);
+    } catch (err) {
+        console.error('Error deleting documents in the "url" collection:', err);
+    }
+}
+
 module.exports = {
     connectToMongoDB,
     disconnectFromMongoDB,
-    findRedirectURLByShortId
+    findRedirectURLByShortId,
+    deleteAllDocumentsInUrlCollection
 };

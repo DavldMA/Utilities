@@ -1,5 +1,5 @@
 const shortid = require("shortid");
-const { connectToMongoDB, disconnectFromMongoDB, findRedirectURLByShortId } = require('../connect');
+const { connectToMongoDB, disconnectFromMongoDB, findRedirectURLByShortId, deleteAllDocumentsInUrlCollection } = require('../connect');
 
 async function generateNewShortURL(req, res) {
     const body = req.body;
@@ -20,7 +20,7 @@ async function generateNewShortURL(req, res) {
         });
         
         if (result && result.insertedId) {
-            return res.json({ id: shortID });
+            return shortID;
         } else {
             return res.status(500).json({ error: 'Failed to create a new short URL' });
         }
@@ -37,6 +37,10 @@ async function findRedirectURL(shortID) {
     return xd
 }
 
+async function deleteAllFromDB() {
+    await deleteAllDocumentsInUrlCollection()
+}
+
 module.exports = {
-    generateNewShortURL, findRedirectURL
+    generateNewShortURL, findRedirectURL, deleteAllFromDB
 };
